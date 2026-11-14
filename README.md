@@ -1,5 +1,12 @@
 # TinySpark — a 4 KB chess engine for make.fun tiny-chess-01
 
+[![make.fun](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01)
+[![Rank](https://make.fun/badge/tiny-chess-01/Da2ja3/tiny-chess-01-tinyspark/rank.svg)](https://make.fun/bounty/tiny-chess-01)
+[![Reward](https://make.fun/badge/tiny-chess-01/Da2ja3/tiny-chess-01-tinyspark/reward.svg)](https://make.fun/bounty/tiny-chess-01)
+
+Entry for the [make.fun](https://make.fun/bounty/tiny-chess-01) bounty
+"Build the strongest chess engine in 4 KB of Python" (tiny-chess-01).
+
 TinySpark ("TS") is an original chess engine written in pure Python
 (standard library only), built for the make.fun bounty
 "Build the strongest chess engine in 4 KB of Python"
