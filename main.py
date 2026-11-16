@@ -1,3 +1,4 @@
+# v37f: 50k nodes, R=3, ID16
 import sys,json,os,urllib.request
 d='nbrq'
 X=print
@@ -14,7 +15,7 @@ l=(),(),Z,D[1::2],D[0::2],D,D
 a={0:13,7:14,4:12,112:7,119:11,116:3}
 S=1e9
 m=1e5
-u={};v=[0]*64
+u={};v=[0]*64;Y={}
 def T(f):
 	O='KQkq';global A,B,I,E,H,N;A=[0]*128;N=[];C=f.split();P=C[0].split('/');Q='PNBRQK';H=[0,0]
 	for(R,S)in enumerate(P):
@@ -101,22 +102,24 @@ def g(a,z,d,y):
 	if K>50000:raise KeyError
 	x=d>0 and(tuple(A),B);y=u.get(x,0)
 	F=d<=0;M=U(H[B<0],-B)
-	if d>2 and M<1 and(e(1032),-g(-z,1-z,d-4,D+1),f())[1]>=z:return z
+	if d>2 and M<1 and(e(1032),-g(-z,1-z,d-3,D+1),f())[1]>=z:return z
 	if F and not M:
 		C=n()
 		if C>=z:return z
 		if C>a:a=C
 		w=[B for B in c()if A[o:=B>>7&127]or B>>14&7 or o==E]
 	else:w=c()
-	w.sort(key=lambda m:-(m==y)*2000-R[G(A[m>>7&127])]-(m==v[D])*400);J=-S;N=0
+	w.sort(key=lambda m:-(m==y)*2000-R[G(A[m>>7&127])]-(m==v[D])*400-Y.get(m,0));J=-S;N=0
 	for P in w:
 		e(P)
 		if U(H[B>0],B):f();continue
 		N+=1
 		if D<1 and N<2:L=P
-		C=-g(-z,-a,d-1,D+1);f()
+		if N>3 and d>2 and not(A[P>>7&127]or P>>14&7)and not M:C=-g(-z,-a,d-2,D+1);C=-g(-z,-a,d-1,D+1)if C>a else C
+		else:C=-g(-z,-a,d-1,D+1)
+		f()
 		if C>=z:
-			if not A[P>>7&127]:v[D]=P
+			if not A[P>>7&127]:v[D]=P;Y[P]=Y.get(P,0)//2+d*d
 			if x and V(u)<m:u[x]=P
 			return z
 		if C>J:
@@ -143,7 +146,7 @@ while 1:
 	C=P("/game",{})
 	if C["status"]=="done":break
 	while C["status"]=="your_move":
-		T(C["fen"]);o(8);M=p(L)
+		T(C["fen"]);o(16);M=p(L)
 		Q=P("/move",{"game":C["game"],"move":M})
 		if not Q:Q=P("/move",{"game":C["game"],"move":C["legal_moves"][0]})
 		C=Q
