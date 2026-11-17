@@ -1,5 +1,5 @@
 # v37f: 50k nodes, R=3, ID16
-import sys,json,os,urllib.request
+import os,sys,json,urllib.request
 d='nbrq'
 X=print
 W=range
@@ -7,17 +7,17 @@ V=len
 J=int
 G=abs
 R=[0,100,320,330,500,900,0]
-j='PPPPQRRLQONPPPPTQQRURRTVZZZZPPPP'
-k='FHJJHLPQJQRSJPSTJQSTJPRSHLPPFHJJ'
-Z=14,18,31,33,-14,-18,-31,-33
-D=1,15,16,17,-1,-15,-16,-17
+j="PPPPQRRLQONPPPPTQQRURRTVZZZZPPPP"
+k="FHJJHLPQJQRSJPSTJQSTJPRSHLPPFHJJ"
+Z=(14,18,31,33,-14,-18,-31,-33)
+D=(1,15,16,17,-1,-15,-16,-17)
 l=(),(),Z,D[1::2],D[0::2],D,D
-a={0:13,7:14,4:12,112:7,119:11,116:3}
-S=1e9
-m=1e5
+a={0:13,4:12,7:14,112:7,116:3,119:11}
+S=1E9
+m=1E5
 u={};v=[0]*64;Y={}
-def T(f):
-	O='KQkq';global A,B,I,E,H,N;A=[0]*128;N=[];C=f.split();P=C[0].split('/');Q='PNBRQK';H=[0,0]
+def T(x):
+	O="KQkq";global A,B,I,E,H,N;A=[0]*128;N=[];C=x.split();P=C[0].split('/');Q="PNBRQK";H=[0]*2
 	for(R,S)in enumerate(P):
 		L=7-R;D=0
 		for F in S:
@@ -28,25 +28,25 @@ def T(f):
 				D+=1
 	B=1 if C[1]=='w'else-1;I=sum(1<<O.index(A)for A in C[2]if A in O);E=-1
 	if V(C)>3 and C[3]!='-':E=J(C[3][1])*16+ord(C[3][0])-113
-def U(s,y):
+def U(s,t):
 	for C in(15,17):
-		B=s-C if y>0 else s+C
-		if not B&136 and A[B]==y:return 1
+		B=s-C if t>0 else s+C
+		if not B&136 and A[B]==t:return 1
 	for(F,H)in((Z,2),(D,6)):
 		for C in F:
 			B=s+C
-			if not B&136 and A[B]==H*y:return 1
+			if not B&136 and A[B]==H*t:return 1
 	for C in D:
 		B=s+C
 		while not B&136:
 			E=A[B]
 			if E:
-				if E in(5*y,(3+(G(C)not in(15,17)))*y):return 1
+				if E in(5*t,(3+(G(C)not in(15,17)))*t):return 1
 				break
 			B+=C
 	return 0
-def b(s,o):
-	for A in((5,4,3,2)if o>>4==7*(B>0)else(0,)):F.append(s|o<<7|A<<14)
+def b(s,p):
+	for A in((5,4,3,2)if p>>4==7*(B>0)else(0,)):F.append(s|p<<7|A<<14)
 def c():
 	global F;F=[]
 	for C in W(128):
@@ -73,13 +73,13 @@ def c():
 					if N:break
 					if L<3 or L>5:break
 					H+=M
-	for(T,D,K)in((1,4,6),(2,4,2),(4,116,118),(8,116,114)):
-		if K>D:Q=D+3;R=D+1,K;S=D,D+1,K
-		else:Q=D-4;R=D-1,D-2,D-3;S=D,D-1,K
-		if I&T and A[Q]==4*B and A[D]==6*B and not any(A[B]for B in R)and not any(U(A,-B)for A in S):F.append(D|K<<7)
+	for(t,d,k)in((1,4,6),(2,4,2),(4,116,118),(8,116,114)):
+		if k>d:Q=d+3;R=d+1,k;S=d,d+1,k
+		else:Q=d-4;R=d-1,d-2,d-3;S=d,d-1,k
+		if I&t and A[Q]==4*B and A[d]==6*B and not any(A[B]for B in R)and not any(U(A,-B)for A in S):F.append(d|k<<7)
 	return F
-def e(m):
-	global B,I,E;N.append((A[:],B,I,E,H[:]));C=m&127;D=m>>7&127;J=m>>14&7;F=A[C];L=A[D]
+def e(n):
+	global B,I,E;N.append((A[:],B,I,E,H[:]));C=n&127;D=n>>7&127;J=n>>14&7;F=A[C];L=A[D]
 	if G(F)==1 and D==E and not L:A[D-16*B]=0
 	A[C]=0;A[D]=F
 	if J:A[D]=J*B
@@ -94,7 +94,7 @@ def n():
 	D=0
 	for C in W(128):
 		if C&136 or not A[C]:continue
-		E=A[C];F=G(E);H=j if F==1 else k;I=min(C&7,7-(C&7));s=E//G(E);r=(C>>4)if s>0 else 7-(C>>4)
+		E=A[C];F=G(E);H=j if F<2 else k;I=min(C&7,7-(C&7));s=E//F;r=(C>>4)if s>0 else 7-(C>>4)
 		D+=s*(R[F]+(ord(H[r*4+I])-80)*5-(F>5)*r*10)
 	return D if B>0 else-D
 def g(a,z,d,y):
